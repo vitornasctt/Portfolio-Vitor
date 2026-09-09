@@ -58,23 +58,4 @@ modal.addEventListener('close', () => {
   lastProjectTrigger?.focus();
 });
 
-const form = document.getElementById('contactForm');
-const nameField = document.getElementById('fieldNome');
-const emailField = document.getElementById('fieldEmail');
-const messageField = document.getElementById('fieldMensagem');
-
-[nameField, messageField].forEach(field => {
-  field.addEventListener('input', () => field.setCustomValidity(''));
-});
-form.addEventListener('submit', event => {
-  event.preventDefault();
-  nameField.setCustomValidity(nameField.value.trim() ? '' : 'Informe seu nome.');
-  messageField.setCustomValidity(messageField.value.trim() ? '' : 'Conte um pouco sobre o seu projeto.');
-  if (!form.reportValidity()) return;
-  const text = `Olá, Vitor! Meu nome é ${nameField.value.trim()} (${emailField.value.trim()}).\n\n${messageField.value.trim()}`;
-  const url = new URL('https://wa.me/5528999297133');
-  url.searchParams.set('text', text);
-  window.open(url.href, '_blank', 'noopener,noreferrer');
-});
-
 document.getElementById('currentYear').textContent = new Date().getFullYear();
